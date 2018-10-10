@@ -2,6 +2,7 @@ package com.example.utilsdk.okhttp.response;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.example.utilsdk.okhttp.exception.OkHttpException;
 import com.example.utilsdk.okhttp.listener.DisposeDataHandle;
@@ -17,13 +18,15 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by www10 on 2017/4/16.
  *
  * @function 专门处理JSON的回调响应
  */
 
-public class CommonjsonCallback implements Callback {
+public class CommonJsonCallback implements Callback {
     //与服务器返回的字段的一个对应关系
     protected final String RESULT_CODE = "ecode";   //有返回则对于http请求来说是成功的
     protected final int RESULT_CODE_VALUE = 0;
@@ -41,7 +44,7 @@ public class CommonjsonCallback implements Callback {
     private DisposeDataListener mListener;
     private Class<?> mClass;
 
-    public CommonjsonCallback(DisposeDataHandle handle) {
+    public CommonJsonCallback(DisposeDataHandle handle) {
         this.mListener = handle.mListener;
         this.mClass = handle.mClass;
         this.mDeliveryHandler = new Handler(Looper.getMainLooper());
@@ -53,6 +56,7 @@ public class CommonjsonCallback implements Callback {
         mDeliveryHandler.post(new Runnable() {
             @Override
             public void run() {
+                Log.e(TAG,"onioexception:"+ioexception);
                 mListener.onFailure(new OkHttpException(NETWORK_ERROR, ioexception));
             }
         });

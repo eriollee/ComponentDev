@@ -4,6 +4,7 @@
               android:background="@color/color_cccccc"
               android:orientation="vertical"
 >
+    <!--title bar-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
         />
     </RelativeLayout>
 
+    <!--loading view-->
     <ImageView
         android:id="@+id/loading_view"
         android:layout_width="match_parent"
@@ -51,6 +53,8 @@
         android:scaleType="center"
         android:src="@drawable/loading_data_anim"
     />
+
+    <!--所有数据的列表-->
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"

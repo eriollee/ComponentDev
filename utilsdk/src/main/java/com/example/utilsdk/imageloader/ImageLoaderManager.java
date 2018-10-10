@@ -29,7 +29,7 @@ public class ImageLoaderManager {
     private static ImageLoader mImageLoader = null;
     private static ImageLoaderManager mInstance = null;
 
-    private static ImageLoaderManager getInstance(Context context){
+    public static ImageLoaderManager getInstance(Context context){
         if(mInstance == null){
             synchronized (ImageLoaderManager.class){
                 if(mInstance == null){
@@ -78,14 +78,11 @@ public class ImageLoaderManager {
         }
     }
 
-    public void display(ImageView imageView, String url, DisplayImageOptions options, ImageLoadingListener listener){
-        displayImage(imageView,url,options,listener);
-    }
-    public void display(ImageView imageView, String url, ImageLoadingListener listener){
+    public void displayImage(ImageView imageView, String url, ImageLoadingListener listener){
         displayImage(imageView,url,null,listener);
     }
 
-    public void display(ImageView imageView, String url){
+    public void displayImage(ImageView imageView, String url){
         displayImage(imageView,url,null,null);
     }
 

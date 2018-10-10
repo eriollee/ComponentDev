@@ -5,7 +5,8 @@ package com.example.utilsdk.okhttp;
  */
 
 import com.example.utilsdk.okhttp.https.HttpsUtils;
-import com.example.utilsdk.okhttp.response.CommonjsonCallback;
+import com.example.utilsdk.okhttp.listener.DisposeDataHandle;
+import com.example.utilsdk.okhttp.response.CommonJsonCallback;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -70,10 +71,22 @@ public class CommonOkHttpClient {
      * @param commonCallback
      * @return
      */
-    public static Call sendRequest(Request request, CommonjsonCallback commonCallback){
+    public static Call sendRequest(Request request, CommonJsonCallback commonCallback){
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(commonCallback);
 
+        return call;
+    }
+
+    public static Call get(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonJsonCallback(handle));
+        return call;
+    }
+
+    public static Call post(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonJsonCallback(handle));
         return call;
     }
 }

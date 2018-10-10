@@ -37,7 +37,7 @@ public class CommonRequest {
      * @param params
      * @return 返回get类型请求
      */
-    public static Request creatGetRequest(String url,RequestParams params){
+    public static Request createGetRequest(String url,RequestParams params){
         StringBuilder urlBuilder = new StringBuilder(url).append("?");
         if(params !=null){
             for(Map.Entry<String,String >entry:params.urlParams.entrySet()){
