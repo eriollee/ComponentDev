@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.admin.component.R;
 import com.example.admin.component.module.recommand.RecommandBodyValue;
 import com.example.admin.component.util.Util;
+import com.example.utilsdk.adutil.Utils;
 import com.example.utilsdk.imageloader.ImageLoaderManager;
 import com.google.gson.Gson;
 
@@ -132,17 +133,17 @@ public class CourseAdapter extends BaseAdapter {
                     break;
 
                 case CARD_MULTI_PIC:
-//                    mViewHolder = new ViewHolder();
-//                    convertView = mInflate.inflate(R.layout.item_product_card_two_layout,parent,false);
-//                    //初始化多图ViewHolder中的View
-//                    mViewHolder.mLogoView = (CircleImageView) convertView.findViewById(R.id.item_logo_view);
-//                    mViewHolder.mTitleView = (TextView) convertView.findViewById(R.id.item_title_view);
-//                    mViewHolder.mInfoView = (TextView) convertView.findViewById(R.id.item_info_view);
-//                    mViewHolder.mFooterView = (TextView) convertView.findViewById(R.id.item_footer_view);
-//                    mViewHolder.mPriceView = (TextView) convertView.findViewById(R.id.item_price_view);
-//                    mViewHolder.mFromView = (TextView) convertView.findViewById(R.id.item_from_view);
-//                    mViewHolder.mZanView = (TextView) convertView.findViewById(R.id.item_zan_view);
-//                    mViewHolder.mProductLayout = (LinearLayout) convertView.findViewById(R.id.product_photo_layout);
+                    mViewHolder = new ViewHolder();
+                    convertView = mInflate.inflate(R.layout.item_product_card_two_layout,parent,false);
+                    //初始化多图ViewHolder中的View
+                    mViewHolder.mLogoView =  convertView.findViewById(R.id.item_logo_view);
+                    mViewHolder.mTitleView =   convertView.findViewById(R.id.item_title_view);
+                    mViewHolder.mInfoView =  convertView.findViewById(R.id.item_info_view);
+                    mViewHolder.mFooterView =  convertView.findViewById(R.id.item_footer_view);
+                    mViewHolder.mPriceView =  convertView.findViewById(R.id.item_price_view);
+                    mViewHolder.mFromView =   convertView.findViewById(R.id.item_from_view);
+                    mViewHolder.mZanView =  convertView.findViewById(R.id.item_zan_view);
+                    mViewHolder.mProductLayout =   convertView.findViewById(R.id.product_photo_layout);
                     break;
 //                case CARD_VIEW_PAGER:
 //                    mViewHolder = new ViewHolder();
@@ -196,20 +197,22 @@ public class CourseAdapter extends BaseAdapter {
 
                 break;
             case CARD_MULTI_PIC:
-//                //为我们的多图Item绑定数据
-//                mImageLoader.displayImage(mViewHolder.mLogoView, value.logo);
-//                mViewHolder.mTitleView.setText(value.title);
-//                mViewHolder.mInfoView.setText(value.info.concat(mContext.getString(R.string.tian_qian)));
-//                mViewHolder.mFooterView.setText(value.text);
-//                mViewHolder.mPriceView.setText(value.price);
-//                mViewHolder.mFromView.setText(value.from);
-//                mViewHolder.mZanView.setText(mContext.getString(R.string.dian_zan).concat(value.zan));
-//
-//                //动态的添加ImageView到水平scrollViwe中
-//                mViewHolder.mProductLayout.removeAllViews();//删除已有的图片
-//                for(String url : value.url){
-//                    mViewHolder.mProductLayout.addView(createImageView(url));
-//                }
+                 //为我们的多图Item绑定数据
+
+                mViewHolder.mTitleView.setText(value.title);
+                mViewHolder.mInfoView.setText(value.info.concat(mContext.getString(R.string.tian_qian)));
+                mViewHolder.mFooterView.setText(value.text);
+                mViewHolder.mPriceView.setText(value.price);
+                mViewHolder.mFromView.setText(value.from);
+                mViewHolder.mZanView.setText(mContext.getString(R.string.dian_zan).concat(value.zan));
+
+                mImageLoader.displayImage(mViewHolder.mLogoView, value.logo);
+
+                //动态的添加ImageView到水平scrollViwe中
+                mViewHolder.mProductLayout.removeAllViews();//删除已有的图片
+                for(String url : value.url){
+                    mViewHolder.mProductLayout.addView(createImageView(url));
+                }
                 break;
 
 
@@ -230,15 +233,15 @@ public class CourseAdapter extends BaseAdapter {
      * 动态的创建ImageView
      * @return
      */
-//    private ImageView createImageView(String url){
-//        ImageView imageView = new ImageView(mContext);
-//        //与要添加的viewGroup保持一致
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Utils.dip2px(mContext,100),LinearLayout.LayoutParams.MATCH_PARENT);
-//        params.leftMargin = Utils.dip2px(mContext,5);
-//        imageView.setLayoutParams(params);
-//        mImageLoader.displayImage(imageView,url);
-//        return imageView;
-//    }
+    private ImageView createImageView(String url){
+        ImageView imageView = new ImageView(mContext);
+        //与要添加的viewGroup保持一致
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Utils.dip2px(mContext,100),LinearLayout.LayoutParams.MATCH_PARENT);
+        params.leftMargin = Utils.dip2px(mContext,5);
+        imageView.setLayoutParams(params);
+        mImageLoader.displayImage(imageView,url);
+        return imageView;
+    }
     /**
      * 用来缓存我们已经创建好的Item
      */
@@ -258,7 +261,7 @@ public class CourseAdapter extends BaseAdapter {
         private TextView mFromView;
         private TextView mZanView;
         //Card One特有属性
-//        private LinearLayout mProductLayout;
+         private LinearLayout mProductLayout;
         //Card Two特有属性
 
         //Card Three特有属性
