@@ -145,17 +145,17 @@ public class CourseAdapter extends BaseAdapter {
                     mViewHolder.mZanView =  convertView.findViewById(R.id.item_zan_view);
                     mViewHolder.mProductLayout =   convertView.findViewById(R.id.product_photo_layout);
                     break;
-//                case CARD_VIEW_PAGER:
-//                    mViewHolder = new ViewHolder();
-//                    convertView = mInflate.inflate(R.layout.item_product_card_three_layout,parent,false);
-//                    mViewHolder.mViewPager = (ViewPager)convertView.findViewById(R.id.pager);
-//                    mViewHolder.mViewPager.setPageMargin(Utils.dip2px(mContext,12));
-//                    //为viewPager填充数据
-//                    ArrayList<RecommandBodyValue> recommandList = Util.handleData(value);
-//                    mViewHolder.mViewPager.setAdapter(new HotSalePagerAdapter(mContext,recommandList));
-//                    //一开始就让我们的Viewpager处于比较靠中间的项目
-//                    mViewHolder.mViewPager.setCurrentItem(recommandList.size()*100);
-//                    break;
+                case CARD_VIEW_PAGER:
+                    mViewHolder = new ViewHolder();
+                    convertView = mInflate.inflate(R.layout.item_product_card_three_layout,parent,false);
+                    mViewHolder.mViewPager = convertView.findViewById(R.id.pager);
+                    mViewHolder.mViewPager.setPageMargin(Utils.dip2px(mContext,12));
+                    //为viewPager填充数据
+                    ArrayList<RecommandBodyValue> recommandList = Util.handleData(value);
+                    mViewHolder.mViewPager.setAdapter(new HotSalePagerAdapter(mContext,recommandList));
+                    //一开始就让我们的Viewpager处于比较靠中间的项目
+                    mViewHolder.mViewPager.setCurrentItem(recommandList.size()*100);
+                    break;
                 case VIDOE_TYPE:
                     //显示video卡片
 //                    mViewHolder = new ViewHolder();
@@ -247,7 +247,6 @@ public class CourseAdapter extends BaseAdapter {
      */
     private static class ViewHolder{
         //所有Card共有的属性
-        private ImageView mProductView;
         private CircleImageView mLogoView;
         private TextView mTitleView;
         private TextView mInfoView;
@@ -260,12 +259,12 @@ public class CourseAdapter extends BaseAdapter {
         private TextView mPriceView;
         private TextView mFromView;
         private TextView mZanView;
-        //Card One特有属性
-         private LinearLayout mProductLayout;
-        //Card Two特有属性
-
-        //Card Three特有属性
-//        private ViewPager mViewPager;
+        //Card One单图特有属性
+        private ImageView mProductView;
+        //Card Two多图特有属性
+        private LinearLayout mProductLayout;
+        //Card Three走马灯特有属性
+        private ViewPager mViewPager;
 
     }
 
