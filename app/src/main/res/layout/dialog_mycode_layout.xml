@@ -35,7 +35,7 @@
         />
 
     <ImageView
-        android:id="@+id/qrcode_view"
+        android:id="@+id/mycode_qrcode_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@id/tick_view"

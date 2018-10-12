@@ -1,6 +1,8 @@
 package com.example.admin.component.view.fragment.home;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +14,18 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.component.R;
 import com.example.admin.component.adapter.CourseAdapter;
+import com.example.admin.component.constant.Constant;
 import com.example.admin.component.module.recommand.BaseRecommandModel;
+import com.example.admin.component.module.recommand.RecommandBodyValue;
 import com.example.admin.component.network.http.RequestCenter;
 import com.example.admin.component.view.fragment.BaseFragment;
 import com.example.admin.component.view.home.HomeHeaderLayout;
+import com.example.admin.component.zxing.app.CaptureActivity;
+import com.example.utilsdk.activity.AdBrowserActivity;
 import com.example.utilsdk.okhttp.listener.DisposeDataListener;
 
 import static android.content.ContentValues.TAG;
@@ -82,10 +89,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         anim.start();
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -139,30 +142,34 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     private void showErrorView() {
     }
-//
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.qrcode_view:
-//                if (hasPermission(Constant.HARDWEAR_CAMERA_PERMISSION)) {
-//                    doOpenCamera();
-//                } else {
-//                    requestPermission(Constant.HARDWEAR_CAMERA_CODE, Constant.HARDWEAR_CAMERA_PERMISSION);
-//                }
-//                break;
-//            case R.id.category_view:
-//                //与我交谈
+
+    @Override
+    public void onClick(View v) {
+        Log.d(TAG,"onClick View ==="+v.getId());
+        Log.d(TAG,"qrcode_view ==="+R.id.qrcode_view);
+        switch (v.getId()) {
+            case R.id.qrcode_view:
+                if (hasPermission(Constant.HARDWEAR_CAMERA_PERMISSION)) {
+                    Log.d(TAG,"hasPermission");
+                    doOpenCamera();
+                } else {
+                    Log.d(TAG,"noPermission");
+                    requestPermission(Constant.HARDWEAR_CAMERA_CODE, Constant.HARDWEAR_CAMERA_PERMISSION);
+                }
+                break;
+            case R.id.category_view:
+                //与我交谈
 //                Intent intent2 = new Intent(Intent.ACTION_VIEW, Util.createQQUrl("277451977"));
 //                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent2);
-//                break;
-//            case R.id.search_view:
+                break;
+            case R.id.search_view:
 //                Intent searchIntent = new Intent(mContext, SearchActivity.class);
 //                mContext.startActivity(searchIntent);
-//                break;
-//        }
-//    }
-//
+                break;
+        }
+    }
+
 //    @Override
 //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //       RecommandBodyValue value = (RecommandBodyValue) mAdapter.getItem(position - mListView.getHeaderViewsCount());
@@ -172,29 +179,29 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 //            startActivity(intent);
 //        }
 //    }
-//
-//    @Override
-//    public void doOpenCamera() {
-//        Intent intent = new Intent(mContext, CaptureActivity.class);
-//        startActivityForResult(intent, REQUEST_QRCODE);
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        switch (requestCode) {
-//            case REQUEST_QRCODE:
-//                if (resultCode == Activity.RESULT_OK) {
-//                    String code = data.getStringExtra("SCAN_RESULT");
-//                    if (code.contains("http") || code.contains("https")) {
-//                        Intent intent = new Intent(mContext, AdBrowserActivity.class);
-//                        intent.putExtra(AdBrowserActivity.KEY_URL, code);
-//                        startActivity(intent);
-//                    } else {
-//                        Toast.makeText(mContext, code, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                break;
-//        }
-//    }
+
+
+    public void doOpenCamera() {
+        Intent intent = new Intent(mContext, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_QRCODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_QRCODE:
+                if (resultCode == Activity.RESULT_OK) {
+                    String code = data.getStringExtra("SCAN_RESULT");
+                    if (code.contains("http") || code.contains("https")) {
+                        Intent intent = new Intent(mContext, AdBrowserActivity.class);
+                        intent.putExtra(AdBrowserActivity.KEY_URL, code);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(mContext, code, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
+    }
 
 }

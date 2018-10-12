@@ -30,6 +30,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
     compile group: 'com.github.chrisbanes', name: 'PhotoView', version: 'v1.2.5'
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    compile group: 'com.google.zxing', name: 'core', version: '3.3.3'
 
 
     configurations.all {
