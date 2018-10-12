@@ -18,6 +18,7 @@ import com.example.admin.component.adapter.CourseAdapter;
 import com.example.admin.component.module.recommand.BaseRecommandModel;
 import com.example.admin.component.network.http.RequestCenter;
 import com.example.admin.component.view.fragment.BaseFragment;
+import com.example.admin.component.view.home.HomeHeaderLayout;
 import com.example.utilsdk.okhttp.listener.DisposeDataListener;
 
 import static android.content.ContentValues.TAG;
@@ -117,8 +118,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         if (mRecommandData.data.list != null && mRecommandData.data.list.size() > 0) {
             mLoadingView.setVisibility(View.GONE);
             mListView.setVisibility(View.VISIBLE);
-            //为listview添加头
-           // mListView.addHeaderView(new HomeHeaderLayout(mContext, mRecommandData.data.head));
+            //为listview添加列表头
+            mListView.addHeaderView(new HomeHeaderLayout(mContext, mRecommandData.data.head));
             mAdapter = new CourseAdapter(mContext, mRecommandData.data.list);
             mListView.setAdapter(mAdapter);
 //            mListView.setOnScrollListener(new AbsListView.OnScrollListener() {

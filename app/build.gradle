@@ -26,9 +26,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'  //圆形图标
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    // https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
+    compile group: 'com.github.chrisbanes', name: 'PhotoView', version: 'v1.2.5'
+
+
     configurations.all {
         resolutionStrategy.force 'com.android.support:support-annotations:26.1.0'
     }
+    //无限循环轮播器
+    compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+
 }

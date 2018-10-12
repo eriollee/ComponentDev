@@ -124,20 +124,20 @@ public class Utils {
 //        return "";
 //    }
 //
-//    public static DisplayMetrics getDisplayMetrics(Context context) {
-//        DisplayMetrics displayMetrics = new DisplayMetrics();
-//        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//        if (windowManager == null) {
-//            return displayMetrics;
-//        }
-//        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-//        return displayMetrics;
-//    }
-//
-//    public static BitmapDrawable decodeImage(String base64drawable) {
-//        byte[] rawImageData = Base64.decode(base64drawable, 0);
-//        return new BitmapDrawable(null, new ByteArrayInputStream(rawImageData));
-//    }
+    public static DisplayMetrics getDisplayMetrics(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager == null) {
+            return displayMetrics;
+        }
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics;
+    }
+
+    public static BitmapDrawable decodeImage(String base64drawable) {
+        byte[] rawImageData = Base64.decode(base64drawable, 0);
+        return new BitmapDrawable(null, new ByteArrayInputStream(rawImageData));
+    }
 //
 //    public static boolean isPad(Context context) {
 //
